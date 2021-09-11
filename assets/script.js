@@ -3,72 +3,281 @@ const speech = [
   {
     text: "SE VOCÊ VEIO ATÉ AQUI E É ESTUDANTE... VOLTE PARA O JOGO!",
     player: "CHEETER!",
+    picture: "assets/img/snake.png",
+    showPicture: false,
   },
   {
     text: "Então você quer se tornar o novo GangStar de Las Vegas?",
     button: "show",
+    picture: "assets/img/snake.png",
+    showPicture: false,
   },
   {
     text: "Não será fácil... Você terá que me vencer em um antigo jogo para isso...",
     button: "show",
+    picture: "assets/img/snake.png",
+    showPicture: false,
   },
   {
     text: "... ... ...",
     button: "show",
     player: "yes",
+    picture: "assets/img/snake.png",
+    showPicture: false,
   },
   {
     text: "Vejo que vc não é muito de falar... Ok, vamos jogar!!!",
     button: "show",
+    picture: "assets/img/snake.png",
+    showPicture: false,
   },
   {
     text: "Escolha com sabedoria, Pedra, Papel ou Tesoura...",
     button: "show",
+    picture: "assets/img/snake.png",
+    showPicture: false,
   },
 
   {
-    text: "Eu gosto muito de coisas pontudas",
+    text: "Eu gosto muito de coisas pontiagudas...",
     button: "hide",
+    picture: "assets/img/snake.png",
+    showPicture: false,
   },
 
   {
     text: " Eu escolho... ... ... ... ... ... ...",
-    specialChoice: 3,
+    specialChoice: 2,
     button: "hide",
     gameFlow: "checkResults",
+    picture: "assets/img/snake.png",
+    showPicture: false,
   },
   {
-    text: " teste de merda",
-    specialChoice: 3,
+    text: "Boa sorte em sua jornada...",
+    button: "show",
+    picture: "assets/img/halph.png",
+    showPicture: false,
+  },
+
+  //Halph
+  {
+    text: "Eu também quero jogar! preciso ganhar um lenço de papel pro meu narizinho...",
+    button: "show",
+    picture: "assets/img/halph.png",
+    showPicture: false,
+  },
+  {
+    text: "Escolha Pedra, Papel ou Tesoura...",
     button: "hide",
+    picture: "assets/img/halph.png",
+    showPicture: false,
+  },
+  {
+    text: " Eu escolho... ... ... ... ... ... ...",
+    specialChoice: 0,
+    button: "hide",
+    gameFlow: "checkResults",
+    picture: "assets/img/halph.png",
+    showPicture: false,
+  },
+  {
+    text: "Boa sorte em sua jornada...",
+    button: "show",
+    picture: "assets/img/milhouse.png",
+    showPicture: false,
+  },
+
+  // Milhouse
+  {
+    text: "Vou jogar contra você, se eu ganhar você terá que entregar esta carta para alguém da sua família que eu amo...",
+    button: "show",
+    picture: "assets/img/milhouse.png",
+    showPicture: false,
+  },
+  {
+    text: "Escolha Pedra, Papel ou Tesoura...",
+    button: "hide",
+    picture: "assets/img/milhouse.png",
+    showPicture: false,
+  },
+  {
+    text: " Eu escolho... ... ... ... ... ... ...",
+    specialChoice: 1,
+    button: "hide",
+    gameFlow: "checkResults",
+    picture: "assets/img/milhouse.png",
+    showPicture: false,
+  },
+  {
+    text: "Boa sorte em sua jornada...",
+    button: "show",
+    picture: "assets/img/nelson.png",
+    showPicture: false,
+  },
+
+  // Nelson
+  {
+    text: "Ha Ha!!! Só vim aqui para te atrapalhar... Ha Ha! Se ganhar de mim, te atiro essa pedra!!!",
+    button: "show",
+    picture: "assets/img/nelson.png",
+    showPicture: false,
+  },
+  {
+    text: "Escolha Pedra, Papel ou Tesoura...",
+    button: "hide",
+    picture: "assets/img/nelson.png",
+    showPicture: false,
+  },
+  {
+    text: " Eu escolho... ... ... ... ... ... ...",
+    specialChoice: 0,
+    button: "hide",
+    gameFlow: "checkResults",
+    picture: "assets/img/nelson.png",
+    showPicture: false,
+  },
+  {
+    text: "Boa sorte em sua jornada...",
+    button: "show",
+    picture: "assets/img/Fat_Tony.png",
+    showPicture: false,
+  },
+
+  // Fat Tony
+  {
+    text: "Eu não estou nada Feliz com o que fiquei sabendo... Você não passará por mim... Sem dicas dessa vez...",
+    button: "show",
+    picture: "assets/img/Fat_Tony.png",
+    showPicture: false,
+  },
+  {
+    text: "Escolha Pedra, Papel ou Tesoura...",
+    button: "hide",
+    picture: "assets/img/Fat_Tony.png",
+    showPicture: false,
+  },
+  {
+    text: " Eu escolho... ... ... ... ... ... ...",
+    specialChoice: 0,
+    button: "hide",
+    gameFlow: "checkResults",
+    picture: "assets/img/Fat_Tony.png",
+    showPicture: false,
+  },
+  {
+    text: "Nada mal para um novato... Boa sorte em sua jornada...",
+    button: "show",
+    picture: "assets/img/bart.png",
+    showPicture: false,
+  },
+
+  // Bart
+  {
+    text: "Você??? Como você conseguiu chegar até aqui? Isso é impossível!!! Agora vou te mandar de volta para casa...",
+    button: "show",
+    picture: "assets/img/bart.png",
+    showPicture: false,
+  },
+  {
+    text: "Escolha Pedra, Papel ou Tesoura...",
+    button: "hide",
+    picture: "assets/img/bart.png",
+    showPicture: false,
+  },
+  {
+    text: " Eu escolho... ... ... ... ... ... ...",
+    specialChoice: 0,
+    button: "hide",
+    gameFlow: "checkResults",
+    picture: "assets/img/bart.png",
+    showPicture: true,
+  },
+
+  {
+    text: "Mas porquê você fica se escondendo nas sombras??? Você deve mostrar a todos quem é o chefão da cidade...",
+    button: "show",
+    picture: "assets/img/bart.png",
+    showPicture: true,
+  },
+  {
+    text: "O grande Vencedor...",
+    button: "show",
+    picture: "assets/img/bart.png",
+    showPicture: true,
+    gameFlow: "endGame",
   },
 ];
 
-const badGuyPictures = [
+// const badGuyPictures = [
+//   {
+//     src: "assets/img/halph.png",
+//   },
+//   {
+//     src: "assets/img/milhouse.png",
+//   },
+//   {
+//     src: "assets/img/bart.png",
+//   },
+//   {
+//     src: "assets/img/nelson.png",
+//   },
+//   {
+//     src: "assets/img/fat-tony.png",
+//   },
+// ];
+
+// Game Result Speechs
+const gameResultSpeech = [
   {
-    src: "assets/img/snake.png",
+    gameFlow: "empate",
+    text: "Deu empate! Vamos tentar novamente ...",
+    button: "show",
   },
   {
-    src: "assets/img/halph.png",
+    gameFlow: "loose",
+    text: "Você tentou, mas é fraco...  Quem sabe em uma próxima vez...",
+    button: "show",
+    gameFlow: "restart",
   },
   {
-    src: "assets/img/milhouse.png",
+    text: "Olha o maluco aeee... você ganhou meu chapa... Eu só queria me divertir...",
+    button: "show",
+    gameFlow: "continue",
   },
   {
-    src: "assets/img/bart.png",
+    text: "Ganhei meu lencinho! Obrigado! agora posso limpar meu narizinho...",
+    button: "show",
+    gameFlow: "continue",
   },
   {
-    src: "assets/img/nelson.png",
+    text: "Ah não! Você picotou toda a minha carta! Eu só queria que a Lisa me amasse...",
+    button: "show",
+    gameFlow: "continue",
   },
   {
-    src: "assets/img/fat-tony.png",
+    text: "Eu nem queria ganhar mesmo... e essa pedra nem era uma pedra de verdade...",
+    button: "show",
+    gameFlow: "continue",
+  },
+  {
+    text: "Você não é fraco como eu pensava... poderá se tornar Grande um dia...",
+    button: "show",
+    gameFlow: "continue",
+  },
+  {
+    text: "Não acredito que vc me venceu... você agora é o GangStar da cidade... ",
+    button: "show",
+    gameFlow: "continue",
+    showPicture: true,
   },
 ];
+
+let gameResultStatus = 0; //control winner control text typping speech
 
 /* ----------------- Control Game Status ---------------- */
 let gameStatus = 0; //Equals index of Game phrases
-let badGuyStatus = 0;
-const playerSpeech = 0;
+// let badGuyStatus = 0;
 
 /* -------------------- Speech speed -------------------- */
 const speed = 50; //in milliseconds
@@ -94,6 +303,14 @@ function typePlayer() {
   }
 }
 
+function typeGameResult() {
+  if (typping < gameResultSpeech[gameResultStatus].text.length) {
+    badGuySpeek.innerHTML += gameResultSpeech[gameResultStatus].text[typping];
+    typping++;
+    setTimeout(typeGameResult, speed);
+  }
+}
+
 /* -------------------- Control Game -------------------- */
 const buttonContinue = document.getElementById("continue");
 const showButton = () => {
@@ -103,7 +320,12 @@ const hideButton = () => {
   return (buttonContinue.style.display = "none");
 };
 
-// Choose speeker
+/* ----------------- Show bad Guy Image ----------------- */
+const badGuyImage = document.getElementById("bad-guy-img");
+// badGuyImage.style.filter = "brightness(1)";
+// badGuyImage.style.filter = "brightness(0)";
+
+/* ---------------- Speeker text Control ---------------- */
 function hoIsSpeeking() {
   if (speech[gameStatus].player === "yes") {
     typePlayer();
@@ -112,11 +334,18 @@ function hoIsSpeeking() {
   }
 }
 
-// function continueGame() {
-//     talkMoment();
-// }
+/* ------------------ Show/Hide Player picture ----------------- */
+function showPicture() {
+  if (speech[gameStatus].showPicture === false) {
+    return (badGuyImage.style.filter = "brightness(0)");
+  }
+  return (badGuyImage.style.filter = "brightness(1)");
+}
 
+/* -------- Control Buton functions and game flow ------- */
 function talkMoment() {
+  badGuyImage.src = speech[gameStatus].picture;
+  showPicture();
   gameStatus++;
   typping = 0;
   buttonContinue.innerText = "Continue...";
@@ -126,7 +355,15 @@ function talkMoment() {
   hoIsSpeeking();
   if (speech[gameStatus].button === "show") {
     setTimeout(showButton, speech[gameStatus].text.length * 50);
+    console.log(gameResultSpeech[gameResultStatus].gameFlow);
   }
+  if (gameResultSpeech[gameResultStatus].gameFlow === "restart") {
+    location.reload();
+  } else if (gameResultSpeech[gameResultStatus].gameFlow === "endGame") {
+    console.log(gameResultSpeech[gameResultStatus].gameFlow);
+    gangStar();
+  }
+
   hideButton();
   showGame();
 }
@@ -141,6 +378,18 @@ function talkMomentPlaying() {
   }
 
   setTimeout(badGuyRandomChoice, 3000);
+}
+
+function talkGameResult(n) {
+  typping = 0;
+
+  badGuySpeek.innerHTML = "";
+  buttonContinue.innerText = "Continue...";
+
+  typeGameResult();
+  if (gameResultSpeech[n].button === "show") {
+    setTimeout(showButton, gameResultSpeech[n].text.length * 50);
+  }
 }
 
 /* ------------------- Show board Game ------------------ */
@@ -184,30 +433,29 @@ const choicesImg = [
 ];
 
 // Check choices
-let playerChoice = undefined;
+let playerChoice;
 let badGuyChoice = "";
 
 board.addEventListener("click", identifyPlayerChoice);
 
 function identifyPlayerChoice(event) {
-  playerChoice = undefined;
-
   let playerTarget = event.target.id;
   let takeSrcImage = "";
 
-  if (playerChoice === undefined) {
-    for (let i = 0; i < choicesImg.length; i++) {
-      if (choicesImg[i].id === playerTarget) {
-        takeSrcImage = choicesImg[i].src;
-      }
+  for (let i = 0; i < choicesImg.length; i++) {
+    let checkChoice = choicesImg[i].id;
+
+    if (checkChoice === playerTarget) {
+      playerChoice = i;
+      takeSrcImage = choicesImg[i].src;
     }
-    const playerChoiceImg = document.createElement("img");
-    playerChoiceImg.src = takeSrcImage;
-    playerChoiceImg.classList.add("speek__image");
-    playerSpeek.appendChild(playerChoiceImg);
-    hideBoard();
-    badGuyTalkChoice();
   }
+  const playerChoiceImg = document.createElement("img");
+  playerChoiceImg.src = takeSrcImage;
+  playerChoiceImg.classList.add("speek__image");
+  playerSpeek.appendChild(playerChoiceImg);
+  hideBoard();
+  badGuyTalkChoice();
 }
 
 function badGuyTalkChoice() {
@@ -226,11 +474,8 @@ function badGuyRandomChoice() {
 
   let takeSrcImage = "";
 
-  for (let i = 0; i < choicesImg.length; i++) {
-    if (Number.badGuyChoice === Number[i]) {
-      takeSrcImage = choicesImg[i].src;
-    }
-  }
+  takeSrcImage = choicesImg[badGuyChoice].src;
+
   const badGuyChoiceImg = document.createElement("img");
   badGuyChoiceImg.src = takeSrcImage;
   badGuyChoiceImg.classList.add("speek__image");
@@ -238,4 +483,68 @@ function badGuyRandomChoice() {
   setTimeout(showWinner, 3000);
 }
 
-function showWinner() {}
+/* ------------------ Check the winner ------------------ */
+function showWinner() {
+  //Draw
+  if (playerChoice === badGuyChoice) {
+    gameStatus -= 2;
+    gameResultStatus = 0;
+
+    talkGameResult(gameResultStatus);
+  }
+
+  //Player Loose
+  else if (
+    (playerChoice === 1 && badGuyChoice === 2) ||
+    (playerChoice === 0 && badGuyChoice === 1) ||
+    (playerChoice === 2 && badGuyChoice === 0)
+  ) {
+    gameResultStatus = 1;
+    talkGameResult(gameResultStatus);
+    buttonContinue.innerText = "Restart";
+  }
+
+  //Player Win
+  else if (
+    (playerChoice === 2 && badGuyChoice === 1) ||
+    (playerChoice === 1 && badGuyChoice === 0) ||
+    (playerChoice === 0 && badGuyChoice === 2)
+  ) {
+    badGuyImage.style.filter = "brightness(1)";
+    if (gameResultStatus === 0) {
+      gameResultStatus = 2;
+    } else {
+      gameResultStatus++;
+    }
+    talkGameResult(gameResultStatus);
+  }
+}
+
+/* -------------------- Final Screen -------------------- */
+let homer = document.querySelector("#homerImg");
+let revelation = document.querySelector(".absolute");
+let finalText = document.querySelector("#finalText");
+
+function gangStar() {
+  hideButton();
+  homer.style.filter = "brightness(1)";
+  setTimeout(time1, 4000);
+  setTimeout(time2, 5000);
+  setTimeout(specialButton, 10000);
+}
+
+function time1() {
+  homer.classList.add("homer-exit");
+}
+
+function time2() {
+  revelation.style.display = "block";
+  const body = document.getElementsByTagName("body")[0];
+  finalText.style.display = "block";
+}
+
+function specialButton() {
+  buttonContinue.innerText = "Restart";
+  buttonContinue.style.position = "absolute";
+  buttonContinue.onclick = location.reload();
+}

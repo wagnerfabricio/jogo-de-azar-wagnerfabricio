@@ -80,7 +80,7 @@ h1 {
   transform: translate(-50%, -50%);
 }
 
-.hommer-img {
+.homer-img {
   max-width: 100%;
   max-height: 100%;
   display: block;
@@ -187,6 +187,24 @@ button.continue:hover {
   color: var(--rich-black-fogra-39);
   background-color: var(--davys-grey);
 }
+
+.homer-exit {
+  margin-top: 140px;
+  transition: all 2s;
+}
+
+#finalText {
+  display: none;
+  position: absolute;
+  bottom: 12%;
+  right: 50%;
+  transform: translateX(50%);
+  font-family: var(--las-vegas-font);
+  font-size: 3rem;
+  color: var(--rich-black-fogra-39);
+  text-align: center;
+  text-shadow: 5px 5px 5px white;
+}
 /* ----------------------- EXTRAS ----------------------- */
 @-webkit-keyframes bounce {
   0% {
@@ -202,9 +220,18 @@ button.continue:hover {
   }
 }
 
+@-webkit-keyframes exit {
+  0% {
+    margin-top: 0;
+  }
+  100% {
+    margin-top: 140px;
+  }
+}
+
 /* -------------------- MEDIA QUERIE -------------------- */
-/* @media (min-width: 500px) {
+@media (min-width: 500px) {
   .speek {
     font-size: 1.6rem;
   }
-} */
+}
