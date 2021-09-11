@@ -191,7 +191,7 @@ const speech = [
   },
   {
     text: " Eu escolho... ... ... ... ... ... ...",
-    specialChoice: 0,
+    // specialChoice: 0,
     button: "hide",
     gameFlow: "checkResults",
     picture: "assets/img/Fat_Tony.png",
@@ -227,7 +227,7 @@ const speech = [
   },
   {
     text: " Eu escolho... ... ... ... ... ... ...",
-    specialChoice: 0,
+    // specialChoice: 0,
     button: "hide",
     gameFlow: "checkResults",
     picture: "assets/img/bart.png",
@@ -440,7 +440,7 @@ const choicesImg = [
 
 // Check choices
 let playerChoice;
-let badGuyChoice = "";
+let badGuyChoice = "0";
 
 board.addEventListener("click", identifyPlayerChoice);
 
@@ -472,15 +472,15 @@ function badGuyTalkChoice() {
 function badGuyRandomChoice() {
   badGuySpeek.innerHTML = "";
 
-  if (speech[gameStatus].gameFlow !== undefined) {
+  if (speech[gameStatus].specialChoice !== undefined) {
     badGuyChoice = speech[gameStatus].specialChoice;
+    console.log("não sei como veio parar aqui...");
   } else {
     badGuyChoice = Math.floor(Math.random() * 3);
+    console.log("veio pelo random");
   }
 
-  let takeSrcImage = "";
-
-  takeSrcImage = choicesImg[badGuyChoice].src;
+  let takeSrcImage = choicesImg[badGuyChoice].src;
 
   const badGuyChoiceImg = document.createElement("img");
   badGuyChoiceImg.src = takeSrcImage;
