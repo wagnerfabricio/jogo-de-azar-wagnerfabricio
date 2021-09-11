@@ -1,45 +1,73 @@
 /* -------------------- Game phrases -------------------- */
 const speech = [
   {
-    id: 0,
-    text: "... ... ... ... ...",
-    player: true,
+    text: "SE VOCÊ VEIO ATÉ AQUI E É ESTUDANTE... VOLTE PARA O JOGO!",
+    player: "CHEETER!",
   },
   {
-    id: 1,
     text: "Então você quer se tornar o novo GangStar de Las Vegas?",
     button: "show",
   },
   {
-    id: 2,
     text: "Não será fácil... Você terá que me vencer em um antigo jogo para isso...",
     button: "show",
   },
   {
-    id: 3,
     text: "... ... ...",
     button: "show",
     player: "yes",
   },
   {
-    id: 4,
     text: "Vejo que vc não é muito de falar... Ok, vamos jogar!!!",
     button: "show",
   },
   {
-    id: 5,
     text: "Escolha com sabedoria, Pedra, Papel ou Tesoura...",
+    button: "show",
+  },
+
+  {
+    text: "Eu gosto muito de coisas pontudas",
     button: "hide",
   },
+
   {
-    id: 6,
     text: " Eu escolho... ... ... ... ... ... ...",
+    specialChoice: 3,
     button: "hide",
+    gameFlow: "checkResults",
+  },
+  {
+    text: " teste de merda",
+    specialChoice: 3,
+    button: "hide",
+  },
+];
+
+const badGuyPictures = [
+  {
+    src: "assets/img/snake.png",
+  },
+  {
+    src: "assets/img/halph.png",
+  },
+  {
+    src: "assets/img/milhouse.png",
+  },
+  {
+    src: "assets/img/bart.png",
+  },
+  {
+    src: "assets/img/nelson.png",
+  },
+  {
+    src: "assets/img/fat-tony.png",
   },
 ];
 
 /* ----------------- Control Game Status ---------------- */
 let gameStatus = 0; //Equals index of Game phrases
+let badGuyStatus = 0;
 const playerSpeech = 0;
 
 /* -------------------- Speech speed -------------------- */
@@ -94,6 +122,7 @@ function talkMoment() {
   buttonContinue.innerText = "Continue...";
   badGuySpeek.innerHTML = "";
   playerSpeek.innerHTML = "";
+
   hoIsSpeeking();
   if (speech[gameStatus].button === "show") {
     setTimeout(showButton, speech[gameStatus].text.length * 50);
@@ -126,15 +155,18 @@ function showGame() {
 
 const showBoard = () => {
   board.style.opacity = "1";
+  board.style.display = "flex";
 };
 
 const hideBoard = () => {
   board.style.opacity = "0";
+  board.style.display = "none";
 };
 
+/* --------------------- Game Button -------------------- */
 buttonContinue.addEventListener("click", talkMoment);
 
-/* ----------------- Game Functionality ----------------- */
+/* ----------------- Board Functionality ----------------- */
 // Options database
 const choicesImg = [
   {
@@ -158,19 +190,24 @@ let badGuyChoice = "";
 board.addEventListener("click", identifyPlayerChoice);
 
 function identifyPlayerChoice(event) {
-  playerChoice = event.target.id;
+  playerChoice = undefined;
+
+  let playerTarget = event.target.id;
   let takeSrcImage = "";
 
-  for (let i = 0; i < choicesImg.length; i++) {
-    if (choicesImg[i].id === playerChoice) {
-      takeSrcImage = choicesImg[i].src;
+  if (playerChoice === undefined) {
+    for (let i = 0; i < choicesImg.length; i++) {
+      if (choicesImg[i].id === playerTarget) {
+        takeSrcImage = choicesImg[i].src;
+      }
     }
+    const playerChoiceImg = document.createElement("img");
+    playerChoiceImg.src = takeSrcImage;
+    playerChoiceImg.classList.add("speek__image");
+    playerSpeek.appendChild(playerChoiceImg);
+    hideBoard();
+    badGuyTalkChoice();
   }
-  const playerChoiceImg = document.createElement("img");
-  playerChoiceImg.src = takeSrcImage;
-  playerChoiceImg.classList.add("speek__image");
-  playerSpeek.appendChild(playerChoiceImg);
-  badGuyTalkChoice();
 }
 
 function badGuyTalkChoice() {
@@ -180,7 +217,13 @@ function badGuyTalkChoice() {
 
 function badGuyRandomChoice() {
   badGuySpeek.innerHTML = "";
-  badGuyChoice = Math.floor(Math.random() * 3);
+
+  if (speech[gameStatus].gameFlow !== undefined) {
+    badGuyChoice = speech[gameStatus].specialChoice;
+  } else {
+    badGuyChoice = Math.floor(Math.random() * 3);
+  }
+
   let takeSrcImage = "";
 
   for (let i = 0; i < choicesImg.length; i++) {

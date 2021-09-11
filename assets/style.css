@@ -144,7 +144,7 @@ footer p {
 /* Board */
 .board {
   flex: 1 0 30%;
-  display: flex;
+  display: none;
   justify-content: space-around;
   align-items: center;
   border: 2px solid var(--davys-grey);
@@ -163,7 +163,7 @@ footer p {
 }
 
 .speek__image {
-  width: 50%;
+  width: 60%;
   margin: 0 auto;
 }
 
@@ -171,7 +171,7 @@ button.continue {
   display: block;
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 53%;
   transform: translate(-50%, -50%);
   padding: 10px 20px;
   border-radius: var(--border-radius);
@@ -203,8 +203,8 @@ button.continue:hover {
 }
 
 /* -------------------- MEDIA QUERIE -------------------- */
-@media (min-width: 500px) {
+/* @media (min-width: 500px) {
   .speek {
     font-size: 1.6rem;
   }
-}
+} */
