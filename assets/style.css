@@ -131,6 +131,8 @@ footer p {
   border-radius: var(--border-radius);
   background-color: var(--davys-grey);
   font-size: 1rem;
+  font-weight: 700;
+  font-family: monospace;
   padding: 4px;
   color: var(--rich-black-fogra-39);
 }
@@ -160,7 +162,45 @@ footer p {
   max-width: 100%;
 }
 
+.speek__image {
+  width: 50%;
+  margin: 0 auto;
+}
+
+button.continue {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px 20px;
+  border-radius: var(--border-radius);
+  border: none;
+  background-color: var(--rich-black-fogra-39);
+  color: var(--davys-grey);
+  font-size: 1.5rem;
+  box-shadow: 5px 5px 10px var(--onyx);
+  animation: bounce 2s infinite;
+}
+
+button.continue:hover {
+  color: var(--rich-black-fogra-39);
+  background-color: var(--davys-grey);
+}
 /* ----------------------- EXTRAS ----------------------- */
+@-webkit-keyframes bounce {
+  0% {
+    transform: scale(1, 1) translate(-50%, -50%);
+  }
+
+  50% {
+    transform: scale(0.9, 1) translate(-50%, -50%);
+  }
+
+  100% {
+    transform: scale(1, 1) translate(-50%, -50%);
+  }
+}
 
 /* -------------------- MEDIA QUERIE -------------------- */
 @media (min-width: 500px) {
