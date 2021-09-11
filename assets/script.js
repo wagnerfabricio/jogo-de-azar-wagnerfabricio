@@ -51,8 +51,16 @@ const speech = [
     button: "hide",
     gameFlow: "checkResults",
     picture: "assets/img/snake.png",
-    showPicture: false,
+    showPicture: true,
   },
+
+  {
+    text: "Olha o maluco aeee... você ganhou meu chapa... Eu só queria me divertir...",
+    button: "show",
+    picture: "assets/img/snake.png",
+    showPicture: true,
+  },
+
   {
     text: "Boa sorte em sua jornada...",
     button: "show",
@@ -62,7 +70,7 @@ const speech = [
 
   //Halph
   {
-    text: "Eu também quero jogar! preciso ganhar um lenço de papel pro meu narizinho...",
+    text: "Eu também quero jogar! preciso de um papel para limpar meu narizinho...",
     button: "show",
     picture: "assets/img/halph.png",
     showPicture: false,
@@ -79,8 +87,16 @@ const speech = [
     button: "hide",
     gameFlow: "checkResults",
     picture: "assets/img/halph.png",
-    showPicture: false,
+    showPicture: true,
   },
+
+  {
+    text: "Eu pensei que era um papel de verdade... Não entendi esse jogo... vou para casa...",
+    button: "show",
+    picture: "assets/img/halph.png",
+    showPicture: true,
+  },
+
   {
     text: "Boa sorte em sua jornada...",
     button: "show",
@@ -107,8 +123,16 @@ const speech = [
     button: "hide",
     gameFlow: "checkResults",
     picture: "assets/img/milhouse.png",
-    showPicture: false,
+    showPicture: true,
   },
+
+  {
+    text: "Ah não! Você picotou toda a minha carta! Eu só queria que ela me amasse...",
+    button: "show",
+    picture: "assets/img/milhouse.png",
+    showPicture: true,
+  },
+
   {
     text: "Boa sorte em sua jornada...",
     button: "show",
@@ -135,8 +159,16 @@ const speech = [
     button: "hide",
     gameFlow: "checkResults",
     picture: "assets/img/nelson.png",
-    showPicture: false,
+    showPicture: true,
   },
+
+  {
+    text: "Eu nem queria ganhar mesmo... e essa pedra nem era uma pedra de verdade...",
+    button: "show",
+    picture: "assets/img/nelson.png",
+    showPicture: true,
+  },
+
   {
     text: "Boa sorte em sua jornada...",
     button: "show",
@@ -163,8 +195,16 @@ const speech = [
     button: "hide",
     gameFlow: "checkResults",
     picture: "assets/img/Fat_Tony.png",
-    showPicture: false,
+    showPicture: true,
   },
+
+  {
+    text: "Você não é fraco como eu pensava... poderá se tornar Grande um dia...",
+    button: "show",
+    picture: "assets/img/Fat_Tony.png",
+    showPicture: true,
+  },
+
   {
     text: "Nada mal para um novato... Boa sorte em sua jornada...",
     button: "show",
@@ -195,6 +235,13 @@ const speech = [
   },
 
   {
+    text: "Não acredito que vc me venceu... você agora é o GangStar da cidade... ",
+    button: "show",
+    picture: "assets/img/bart.png",
+    showPicture: true,
+  },
+
+  {
     text: "Mas porquê você fica se escondendo nas sombras??? Você deve mostrar a todos quem é o chefão da cidade...",
     button: "show",
     picture: "assets/img/bart.png",
@@ -207,27 +254,15 @@ const speech = [
     showPicture: true,
     gameFlow: "endGame",
   },
+  {
+    text: "O GangStar",
+    picture: "assets/img/bart.png",
+    showPicture: true,
+    gameFlow: "endGame",
+  },
 ];
 
-// const badGuyPictures = [
-//   {
-//     src: "assets/img/halph.png",
-//   },
-//   {
-//     src: "assets/img/milhouse.png",
-//   },
-//   {
-//     src: "assets/img/bart.png",
-//   },
-//   {
-//     src: "assets/img/nelson.png",
-//   },
-//   {
-//     src: "assets/img/fat-tony.png",
-//   },
-// ];
-
-// Game Result Speechs
+/* ----------------- Game Result Speechs ---------------- */
 const gameResultSpeech = [
   {
     gameFlow: "empate",
@@ -235,45 +270,18 @@ const gameResultSpeech = [
     button: "show",
   },
   {
-    gameFlow: "loose",
     text: "Você tentou, mas é fraco...  Quem sabe em uma próxima vez...",
     button: "show",
     gameFlow: "restart",
   },
   {
-    text: "Olha o maluco aeee... você ganhou meu chapa... Eu só queria me divertir...",
+    text: "Parabéns pela sua vitoria... Gostaria de jogar novamente?",
     button: "show",
-    gameFlow: "continue",
-  },
-  {
-    text: "Ganhei meu lencinho! Obrigado! agora posso limpar meu narizinho...",
-    button: "show",
-    gameFlow: "continue",
-  },
-  {
-    text: "Ah não! Você picotou toda a minha carta! Eu só queria que a Lisa me amasse...",
-    button: "show",
-    gameFlow: "continue",
-  },
-  {
-    text: "Eu nem queria ganhar mesmo... e essa pedra nem era uma pedra de verdade...",
-    button: "show",
-    gameFlow: "continue",
-  },
-  {
-    text: "Você não é fraco como eu pensava... poderá se tornar Grande um dia...",
-    button: "show",
-    gameFlow: "continue",
-  },
-  {
-    text: "Não acredito que vc me venceu... você agora é o GangStar da cidade... ",
-    button: "show",
-    gameFlow: "continue",
-    showPicture: true,
+    gameFlow: "restart",
   },
 ];
 
-let gameResultStatus = 0; //control winner control text typping speech
+let gameResultStatus = 0; //control winner text typping speech
 
 /* ----------------- Control Game Status ---------------- */
 let gameStatus = 0; //Equals index of Game phrases
@@ -351,16 +359,14 @@ function talkMoment() {
   buttonContinue.innerText = "Continue...";
   badGuySpeek.innerHTML = "";
   playerSpeek.innerHTML = "";
-
   hoIsSpeeking();
   if (speech[gameStatus].button === "show") {
     setTimeout(showButton, speech[gameStatus].text.length * 50);
-    console.log(gameResultSpeech[gameResultStatus].gameFlow);
   }
   if (gameResultSpeech[gameResultStatus].gameFlow === "restart") {
     location.reload();
-  } else if (gameResultSpeech[gameResultStatus].gameFlow === "endGame") {
-    console.log(gameResultSpeech[gameResultStatus].gameFlow);
+  }
+  if (speech[gameStatus].gameFlow === "endGame") {
     gangStar();
   }
 
@@ -385,7 +391,7 @@ function talkGameResult(n) {
 
   badGuySpeek.innerHTML = "";
   buttonContinue.innerText = "Continue...";
-
+  /* ------------ // Colocar algum +++ aqui... ------------ */
   typeGameResult();
   if (gameResultSpeech[n].button === "show") {
     setTimeout(showButton, gameResultSpeech[n].text.length * 50);
@@ -489,7 +495,6 @@ function showWinner() {
   if (playerChoice === badGuyChoice) {
     gameStatus -= 2;
     gameResultStatus = 0;
-
     talkGameResult(gameResultStatus);
   }
 
@@ -511,12 +516,7 @@ function showWinner() {
     (playerChoice === 0 && badGuyChoice === 2)
   ) {
     badGuyImage.style.filter = "brightness(1)";
-    if (gameResultStatus === 0) {
-      gameResultStatus = 2;
-    } else {
-      gameResultStatus++;
-    }
-    talkGameResult(gameResultStatus);
+    talkMoment();
   }
 }
 
@@ -526,7 +526,7 @@ let revelation = document.querySelector(".absolute");
 let finalText = document.querySelector("#finalText");
 
 function gangStar() {
-  hideButton();
+  //   hideButton();
   homer.style.filter = "brightness(1)";
   setTimeout(time1, 4000);
   setTimeout(time2, 5000);
@@ -546,5 +546,10 @@ function time2() {
 function specialButton() {
   buttonContinue.innerText = "Restart";
   buttonContinue.style.position = "absolute";
-  buttonContinue.onclick = location.reload();
+  revelation.style.display = "none";
+  finalText.style.display = "none";
+  gameResultStatus = 2;
+  gameStatus = 0;
+  talkGameResult(gameResultStatus);
+  buttonContinue.innerText = "Restart";
 }

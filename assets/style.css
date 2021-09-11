@@ -162,6 +162,10 @@ footer p {
   max-width: 100%;
 }
 
+.board__image img:hover {
+  filter: brightness(0.3) invert(1);
+}
+
 .speek__image {
   width: 60%;
   margin: 0 auto;
@@ -233,5 +237,12 @@ button.continue:hover {
 @media (min-width: 500px) {
   .speek {
     font-size: 1.6rem;
+  }
+  .speek__image {
+    width: 45%;
+  }
+
+  .board {
+    width: 75%;
   }
 }
