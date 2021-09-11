@@ -440,7 +440,7 @@ const choicesImg = [
 
 // Check choices
 let playerChoice;
-let badGuyChoice = "0";
+let badGuyChoice = "";
 
 board.addEventListener("click", identifyPlayerChoice);
 
