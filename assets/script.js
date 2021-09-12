@@ -255,7 +255,7 @@ const speech = [
     gameFlow: "endGame",
   },
   {
-    text: "O GangStar",
+    text: "Nos enganaram... veja quem estava por trás de tudo...",
     picture: "assets/img/bart.png",
     showPicture: true,
     gameFlow: "endGame",
@@ -474,10 +474,8 @@ function badGuyRandomChoice() {
 
   if (speech[gameStatus].specialChoice !== undefined) {
     badGuyChoice = speech[gameStatus].specialChoice;
-    console.log("não sei como veio parar aqui...");
   } else {
     badGuyChoice = Math.floor(Math.random() * 3);
-    console.log("veio pelo random");
   }
 
   let takeSrcImage = choicesImg[badGuyChoice].src;
