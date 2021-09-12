@@ -21,9 +21,7 @@
 
 body {
   background-color: var(--eerie-black);
-  font-size: 62.5%;
-  height: 100vh;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 header,
@@ -33,20 +31,21 @@ footer {
 h1 {
   font-family: var(--las-vegas-font);
   color: var(--davys-grey);
-  font-size: 3.2em;
+  font-size: 2rem;
   font-weight: 700;
   text-align: center;
+  letter-spacing: 2px;
   text-shadow: 5px 5px 5px var(--onyx);
 }
 
 .container {
   max-width: 600px;
-  height: 100vh;
+  height: 90vh;
   border-radius: var(--border-radius);
   background-color: var(--eerie-black-2);
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  margin: 5vh auto;
   /* filter: brightness(10%); */
 }
 
@@ -173,11 +172,12 @@ footer p {
 
 button.continue {
   display: block;
-  position: absolute;
-  left: 50%;
-  top: 53%;
-  transform: translate(-50%, -50%);
+  /* position: absolute; */
+  /* left: 50%; */
+  /* top: 53%; */
+  /* transform: translate(-50%, -50%); */
   padding: 10px 20px;
+  margin: 20px auto;
   border-radius: var(--border-radius);
   border: none;
   background-color: var(--rich-black-fogra-39);
@@ -212,15 +212,15 @@ button.continue:hover {
 /* ----------------------- EXTRAS ----------------------- */
 @-webkit-keyframes bounce {
   0% {
-    transform: scale(1, 1) translate(-50%, -50%);
+    transform: scale(1, 1) /*  translate(-50%, -50%) */;
   }
 
   50% {
-    transform: scale(0.9, 1) translate(-50%, -50%);
+    transform: scale(0.9, 1) /* translate(-50%, -50%) */;
   }
 
   100% {
-    transform: scale(1, 1) translate(-50%, -50%);
+    transform: scale(1, 1) /*  translate(-50%, -50%) */;
   }
 }
 
@@ -235,6 +235,9 @@ button.continue:hover {
 
 /* -------------------- MEDIA QUERIE -------------------- */
 @media (min-width: 500px) {
+  .button.continue {
+    top: 53%;
+  }
   .speek {
     font-size: 1.6rem;
   }
