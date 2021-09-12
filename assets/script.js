@@ -7,7 +7,7 @@ const speech = [
     showPicture: false,
   },
   {
-    text: "Então você quer se tornar o novo GangStar de Las Vegas?",
+    text: "Então você quer se tornar o novo GangStar de Springfield?",
     button: "show",
     picture: "assets/img/snake.png",
     showPicture: false,
