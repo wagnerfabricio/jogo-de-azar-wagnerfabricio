@@ -1,4 +1,5 @@
-/* -------------------- Game phrases -------------------- */
+/* -------------------- GAME PHRASES -------------------- */
+// GAME FLOW SPEECHES
 const speech = [
   {
     text: "SE VOCÊ VEIO ATÉ AQUI E É ESTUDANTE... VOLTE PARA O JOGO!",
@@ -262,7 +263,7 @@ const speech = [
   },
 ];
 
-/* ----------------- Game Result Speechs ---------------- */
+// GAME RESULT SPEECHES
 const gameResultSpeech = [
   {
     gameFlow: "empate",
@@ -281,148 +282,7 @@ const gameResultSpeech = [
   },
 ];
 
-let gameResultStatus = 0; //control winner text typping speech
-
-/* ----------------- Control Game Status ---------------- */
-let gameStatus = 0; //Equals index of Game phrases
-// let badGuyStatus = 0;
-
-/* -------------------- Speech speed -------------------- */
-const speed = 50; //in milliseconds
-
-/* ------------------- Typping effect ------------------- */
-let typping = 0; //Increase after each caracter is inserted
-const badGuySpeek = document.getElementById("badGuySpeek");
-const playerSpeek = document.getElementById("playerSpeek");
-
-function typeWriter() {
-  if (typping < speech[gameStatus].text.length) {
-    badGuySpeek.innerHTML += speech[gameStatus].text[typping];
-    typping++;
-    setTimeout(typeWriter, speed);
-  }
-}
-
-function typePlayer() {
-  if (typping < speech[gameStatus].text.length) {
-    playerSpeek.innerHTML += speech[gameStatus].text[typping];
-    typping++;
-    setTimeout(typePlayer, speed);
-  }
-}
-
-function typeGameResult() {
-  if (typping < gameResultSpeech[gameResultStatus].text.length) {
-    badGuySpeek.innerHTML += gameResultSpeech[gameResultStatus].text[typping];
-    typping++;
-    setTimeout(typeGameResult, speed);
-  }
-}
-
-/* -------------------- Control Game -------------------- */
-const buttonContinue = document.getElementById("continue");
-const showButton = () => {
-  return (buttonContinue.style.display = "block");
-};
-const hideButton = () => {
-  return (buttonContinue.style.display = "none");
-};
-
-/* ----------------- Show bad Guy Image ----------------- */
-const badGuyImage = document.getElementById("bad-guy-img");
-// badGuyImage.style.filter = "brightness(1)";
-// badGuyImage.style.filter = "brightness(0)";
-
-/* ---------------- Speeker text Control ---------------- */
-function hoIsSpeeking() {
-  if (speech[gameStatus].player === "yes") {
-    typePlayer();
-  } else {
-    typeWriter();
-  }
-}
-
-/* ------------------ Show/Hide Player picture ----------------- */
-function showPicture() {
-  if (speech[gameStatus].showPicture === false) {
-    return (badGuyImage.style.filter = "brightness(0)");
-  }
-  return (badGuyImage.style.filter = "brightness(1)");
-}
-
-/* -------- Control Buton functions and game flow ------- */
-function talkMoment() {
-  badGuyImage.src = speech[gameStatus].picture;
-  showPicture();
-  gameStatus++;
-  typping = 0;
-  buttonContinue.innerText = "Continue...";
-  badGuySpeek.innerHTML = "";
-  playerSpeek.innerHTML = "";
-  hoIsSpeeking();
-  if (speech[gameStatus].button === "show") {
-    setTimeout(showButton, speech[gameStatus].text.length * 50);
-  }
-  if (gameResultSpeech[gameResultStatus].gameFlow === "restart") {
-    location.reload();
-  }
-  if (speech[gameStatus].gameFlow === "endGame") {
-    gangStar();
-  }
-
-  hideButton();
-  showGame();
-}
-
-function talkMomentPlaying() {
-  gameStatus++;
-  typping = 0;
-  buttonContinue.innerText = "Continue...";
-  hoIsSpeeking();
-  if (speech[gameStatus].button === "show") {
-    setTimeout(showButton, speech[gameStatus].text.length * 50);
-  }
-
-  setTimeout(badGuyRandomChoice, 3000);
-}
-
-function talkGameResult(n) {
-  typping = 0;
-
-  badGuySpeek.innerHTML = "";
-  buttonContinue.innerText = "Continue...";
-  /* ------------ // Colocar algum +++ aqui... ------------ */
-  typeGameResult();
-  if (gameResultSpeech[n].button === "show") {
-    setTimeout(showButton, gameResultSpeech[n].text.length * 50);
-  }
-}
-
-/* ------------------- Show board Game ------------------ */
-const board = document.getElementById("board");
-
-function showGame() {
-  if (speech[gameStatus].button === "hide") {
-    setTimeout(showBoard, 3000);
-  }
-  hideBoard();
-}
-
-const showBoard = () => {
-  board.style.opacity = "1";
-  board.style.display = "flex";
-};
-
-const hideBoard = () => {
-  board.style.opacity = "0";
-  board.style.display = "none";
-};
-
-/* --------------------- Game Button -------------------- */
-buttonContinue.addEventListener("click", talkMoment);
-
-/* ----------------- Board Functionality ----------------- */
-// Options database
+/* ----------------- BOARD ASSETS ----------------- */
 const choicesImg = [
   {
     id: "fig-rock",
@@ -438,12 +298,156 @@ const choicesImg = [
   },
 ];
 
-// Check choices
-let playerChoice;
-let badGuyChoice = "";
+/* ------------------- GAME VARIABLES ------------------- */
+let gameStatus = 0; //control game position
+let gameResultStatus = 0; //control winner text typping speech
+let typping = 0; //typping effect increase after each caracter is inserted
+let playerChoice; //save player choice
+let badGuyChoice; //save badGuyChoice
+const speed = 50; //control typping speed in milliseconds
 
-board.addEventListener("click", identifyPlayerChoice);
+const badGuySpeek = document.getElementById("badGuySpeek"); //badguy speek balloon
+const playerSpeek = document.getElementById("playerSpeek"); //player speek balloon
+const buttonContinue = document.getElementById("continue"); //game button
 
+const showButton = () => {return (buttonContinue.style.display = "block");}; //show game button
+
+const hideButton = () => {return (buttonContinue.style.display = "none");}; //hide game button
+
+//Show game board
+const showBoard = () => {
+  board.style.opacity = "1";
+  board.style.display = "flex";
+};
+
+//Hide game board
+const hideBoard = () => {
+  board.style.opacity = "0";
+  board.style.display = "none";
+};
+
+const badGuyImage = document.getElementById("bad-guy-img"); //BadGuy Image
+// badGuyImage.style.filter = "brightness(1)"; //When applied show image
+// badGuyImage.style.filter = "brightness(0)"; //when aplied hide image
+
+const board = document.getElementById("board"); //Board Game
+
+/* ------------------- GAME FUNCTIONS ------------------- */
+//BADGUY TYPPING EFFECT
+function typeWriter() {
+  if (typping < speech[gameStatus].text.length) {
+    badGuySpeek.innerHTML += speech[gameStatus].text[typping];
+    typping++;
+    setTimeout(typeWriter, speed);
+  }
+  //from https://www.w3schools.com/howto/howto_js_typewriter.asp
+}
+
+//PLAYER TYPPING EFFECT
+function typePlayer() {
+  if (typping < speech[gameStatus].text.length) {
+    playerSpeek.innerHTML += speech[gameStatus].text[typping];
+    typping++;
+    setTimeout(typePlayer, speed);
+  }
+  //from https://www.w3schools.com/howto/howto_js_typewriter.asp
+}
+
+//GAME RESULT TYPPING EFFECT
+function typeGameResult() {
+  if (typping < gameResultSpeech[gameResultStatus].text.length) {
+    badGuySpeek.innerHTML += gameResultSpeech[gameResultStatus].text[typping];
+    typping++;
+    setTimeout(typeGameResult, speed);
+  }
+  //from https://www.w3schools.com/howto/howto_js_typewriter.asp
+}
+
+//CONTROL HO IS SPEEKING
+function hoIsSpeeking() {
+  if (speech[gameStatus].player === "yes") {
+    typePlayer();
+  } else {
+    typeWriter();
+  }
+}
+
+// SHOW/HIDE PLAYER PICTURE
+function showPicture() {
+  if (speech[gameStatus].showPicture === false) {
+    return (badGuyImage.style.filter = "brightness(0)");
+  }
+  return (badGuyImage.style.filter = "brightness(1)");
+}
+
+// BUTTTON FUNCTIONS AND GAME FLOW
+function talkMoment() {
+  badGuyImage.src = speech[gameStatus].picture; //Change badGuy picture in relation of gameFlow
+
+  showPicture();
+
+  gameStatus++; //increase one more step to the gameFlow
+  typping = 0; //set typping effect to start again
+
+  buttonContinue.innerText = "Continue..."; //change game button from "Start" to "Continue"
+  badGuySpeek.innerHTML = ""; //clean badGuy speek balloon
+  playerSpeek.innerHTML = ""; //clean player speek balloon
+
+  hoIsSpeeking();
+
+  //Continue game in case of win
+  if (speech[gameStatus].button === "show") {
+    setTimeout(showButton, speech[gameStatus].text.length * 50);
+  }
+  //Reload game in case of loose
+  if (gameResultSpeech[gameResultStatus].gameFlow === "restart") {
+    location.reload();
+  }
+  //Call final scenes if player finish the game
+  if (speech[gameStatus].gameFlow === "endGame") {
+    gangStar();
+  }
+
+  hideButton();
+  showGame();
+}
+
+//SHOW CONTINUE BUTTON ONLY AFTER SPEEK
+function talkMomentPlaying() {
+  gameStatus++;
+  typping = 0;
+
+  buttonContinue.innerText = "Continue...";
+
+  hoIsSpeeking();
+  if (speech[gameStatus].button === "show") {
+    setTimeout(showButton, speech[gameStatus].text.length * 50);
+  }
+
+  setTimeout(badGuyRandomChoice, 3000);
+}
+
+//SHOW CONTINUE BUTTON ONLY AFTER SPECIAL SPEECH
+function talkGameResult(n) {
+  typping = 0;
+
+  badGuySpeek.innerHTML = "";
+  buttonContinue.innerText = "Continue...";
+  typeGameResult();
+  if (gameResultSpeech[n].button === "show") {
+    setTimeout(showButton, gameResultSpeech[n].text.length * 50);
+  }
+}
+
+//SHOW OR HIDE BOARD GAME
+function showGame() {
+  if (speech[gameStatus].button === "hide") {
+    setTimeout(showBoard, 3000);
+  }
+  hideBoard();
+}
+
+//SHOW PLAYER CHOICE IN PLAYER SPEEK BALLOON
 function identifyPlayerChoice(event) {
   let playerTarget = event.target.id;
   let takeSrcImage = "";
@@ -464,11 +468,13 @@ function identifyPlayerChoice(event) {
   badGuyTalkChoice();
 }
 
+//SHOW BADGUY LITTLE TEXT BEFORE SHOW HIS CHOICE
 function badGuyTalkChoice() {
   badGuySpeek.innerHTML = "";
   talkMomentPlaying();
 }
 
+//CHECK IF BADGUY HAVE A SPECIAL CHOICE, IF NOT, MAKE A RANDOM CHOICE (EASY GAME MODE)
 function badGuyRandomChoice() {
   badGuySpeek.innerHTML = "";
 
@@ -487,7 +493,7 @@ function badGuyRandomChoice() {
   setTimeout(showWinner, 3000);
 }
 
-/* ------------------ Check the winner ------------------ */
+//CHECK GAME RESULT
 function showWinner() {
   //Draw
   if (playerChoice === badGuyChoice) {
@@ -518,29 +524,32 @@ function showWinner() {
   }
 }
 
-/* -------------------- Final Screen -------------------- */
+/* -------------------- FINAL GAME SCREEN -------------------- */
 let homer = document.querySelector("#homerImg");
 let revelation = document.querySelector(".absolute");
 let finalText = document.querySelector("#finalText");
 
+//SHOW SURPRISE
 function gangStar() {
-  //   hideButton();
   homer.style.filter = "brightness(1)";
   setTimeout(time1, 4000);
   setTimeout(time2, 5000);
   setTimeout(specialButton, 10000);
 }
 
+//CREATE A TIMER TO SHOW SURPRISE 1
 function time1() {
   homer.classList.add("homer-exit");
 }
 
+//CREATE A TIMER 2 TO SHOW NEXT SURPRISE
 function time2() {
   revelation.style.display = "block";
   const body = document.getElementsByTagName("body")[0];
   finalText.style.display = "block";
 }
 
+//SHOW BUTTON RESTART IN THE GAME END AND ASK IF WANT START AGAIN
 function specialButton() {
   buttonContinue.innerText = "Restart";
   buttonContinue.style.position = "absolute";
@@ -551,3 +560,8 @@ function specialButton() {
   talkGameResult(gameResultStatus);
   buttonContinue.innerText = "Restart";
 }
+
+
+/* --------------------- EVENTS -------------------- */
+buttonContinue.addEventListener("click", talkMoment); //Game Button
+board.addEventListener("click", identifyPlayerChoice); //Game board
