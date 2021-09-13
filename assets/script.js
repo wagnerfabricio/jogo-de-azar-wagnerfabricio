@@ -1,4 +1,4 @@
-/* -------------------- Game phrases -------------------- */
+/* -------------------- GAME PHRASES -------------------- */
 const speech = [
   {
     text: "SE VOCÊ VEIO ATÉ AQUI E É ESTUDANTE... VOLTE PARA O JOGO!",
@@ -281,59 +281,56 @@ const gameResultSpeech = [
   },
 ];
 
+/* ------------------- GAME VARIABLES ------------------- */
+let gameStatus = 0; //control game position
 let gameResultStatus = 0; //control winner text typping speech
+const speed = 50; //control typping speed in milliseconds
+let typping = 0; //typping effect increase after each caracter is inserted
+const badGuySpeek = document.getElementById("badGuySpeek"); //badguy speek balloon
+const playerSpeek = document.getElementById("playerSpeek"); //player speek balloon
+const buttonContinue = document.getElementById("continue"); //game button
+const showButton = () => {
+  return (buttonContinue.style.display = "block");
+}; //show game button
+const hideButton = () => {
+  return (buttonContinue.style.display = "none");
+}; //hide game button
+const badGuyImage = document.getElementById("bad-guy-img"); //BadGuy Image
+// badGuyImage.style.filter = "brightness(1)"; //When applied show image
+// badGuyImage.style.filter = "brightness(0)"; //when aplied hide image
 
-/* ----------------- Control Game Status ---------------- */
-let gameStatus = 0; //Equals index of Game phrases
-// let badGuyStatus = 0;
-
-/* -------------------- Speech speed -------------------- */
-const speed = 50; //in milliseconds
-
-/* ------------------- Typping effect ------------------- */
-let typping = 0; //Increase after each caracter is inserted
-const badGuySpeek = document.getElementById("badGuySpeek");
-const playerSpeek = document.getElementById("playerSpeek");
-
+/* ------------------- GAME FUNCTIONS ------------------- */
+//BADGUY TYPPING EFFECT
 function typeWriter() {
   if (typping < speech[gameStatus].text.length) {
     badGuySpeek.innerHTML += speech[gameStatus].text[typping];
     typping++;
     setTimeout(typeWriter, speed);
   }
+  //from https://www.w3schools.com/howto/howto_js_typewriter.asp
 }
 
+//PLAYER TYPPING EFFECT
 function typePlayer() {
   if (typping < speech[gameStatus].text.length) {
     playerSpeek.innerHTML += speech[gameStatus].text[typping];
     typping++;
     setTimeout(typePlayer, speed);
   }
+  //from https://www.w3schools.com/howto/howto_js_typewriter.asp
 }
 
+//RESULT TYPPING EFFECT
 function typeGameResult() {
   if (typping < gameResultSpeech[gameResultStatus].text.length) {
     badGuySpeek.innerHTML += gameResultSpeech[gameResultStatus].text[typping];
     typping++;
     setTimeout(typeGameResult, speed);
   }
+  //from https://www.w3schools.com/howto/howto_js_typewriter.asp
 }
 
-/* -------------------- Control Game -------------------- */
-const buttonContinue = document.getElementById("continue");
-const showButton = () => {
-  return (buttonContinue.style.display = "block");
-};
-const hideButton = () => {
-  return (buttonContinue.style.display = "none");
-};
-
-/* ----------------- Show bad Guy Image ----------------- */
-const badGuyImage = document.getElementById("bad-guy-img");
-// badGuyImage.style.filter = "brightness(1)";
-// badGuyImage.style.filter = "brightness(0)";
-
-/* ---------------- Speeker text Control ---------------- */
+//CONTROL HO IS SPEEKING
 function hoIsSpeeking() {
   if (speech[gameStatus].player === "yes") {
     typePlayer();
@@ -342,7 +339,7 @@ function hoIsSpeeking() {
   }
 }
 
-/* ------------------ Show/Hide Player picture ----------------- */
+// SHOW/HIDE PLAYER PICTURE
 function showPicture() {
   if (speech[gameStatus].showPicture === false) {
     return (badGuyImage.style.filter = "brightness(0)");
@@ -350,22 +347,30 @@ function showPicture() {
   return (badGuyImage.style.filter = "brightness(1)");
 }
 
-/* -------- Control Buton functions and game flow ------- */
+// BUTTTON FUNCTIONS AND GAME FLOW
 function talkMoment() {
-  badGuyImage.src = speech[gameStatus].picture;
+  badGuyImage.src = speech[gameStatus].picture; //Change badGuy picture in relation of gameFlow
+
   showPicture();
-  gameStatus++;
-  typping = 0;
-  buttonContinue.innerText = "Continue...";
-  badGuySpeek.innerHTML = "";
-  playerSpeek.innerHTML = "";
+
+  gameStatus++; //increase one more step to the gameFlow
+  typping = 0; //set typping effect to start again
+
+  buttonContinue.innerText = "Continue..."; //change game button from "Start" to "Continue"
+  badGuySpeek.innerHTML = ""; //clean badGuy speek balloon
+  playerSpeek.innerHTML = ""; //clean player speek balloon
+
   hoIsSpeeking();
+
+  //Continue game in case of win
   if (speech[gameStatus].button === "show") {
     setTimeout(showButton, speech[gameStatus].text.length * 50);
   }
+  //Reload game in case of loose
   if (gameResultSpeech[gameResultStatus].gameFlow === "restart") {
     location.reload();
   }
+  //Call final scenes if player finish the game
   if (speech[gameStatus].gameFlow === "endGame") {
     gangStar();
   }
@@ -377,7 +382,9 @@ function talkMoment() {
 function talkMomentPlaying() {
   gameStatus++;
   typping = 0;
+
   buttonContinue.innerText = "Continue...";
+
   hoIsSpeeking();
   if (speech[gameStatus].button === "show") {
     setTimeout(showButton, speech[gameStatus].text.length * 50);
