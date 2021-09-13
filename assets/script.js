@@ -1,4 +1,5 @@
 /* -------------------- GAME PHRASES -------------------- */
+// GAME FLOW SPEECHES
 const speech = [
   {
     text: "SE VOCÊ VEIO ATÉ AQUI E É ESTUDANTE... VOLTE PARA O JOGO!",
@@ -262,7 +263,7 @@ const speech = [
   },
 ];
 
-/* ----------------- Game Result Speechs ---------------- */
+// GAME RESULT SPEECHES
 const gameResultSpeech = [
   {
     gameFlow: "empate",
@@ -281,23 +282,55 @@ const gameResultSpeech = [
   },
 ];
 
+/* ----------------- BOARD ASSETS ----------------- */
+const choicesImg = [
+  {
+    id: "fig-rock",
+    src: "assets/img/rock.png",
+  },
+  {
+    id: "fig-paper",
+    src: "assets/img/paper.png",
+  },
+  {
+    id: "fig-scissors",
+    src: "assets/img/scissors.png",
+  },
+];
+
 /* ------------------- GAME VARIABLES ------------------- */
 let gameStatus = 0; //control game position
 let gameResultStatus = 0; //control winner text typping speech
-const speed = 50; //control typping speed in milliseconds
 let typping = 0; //typping effect increase after each caracter is inserted
+let playerChoice; //save player choice
+let badGuyChoice; //save badGuyChoice
+const speed = 50; //control typping speed in milliseconds
+
 const badGuySpeek = document.getElementById("badGuySpeek"); //badguy speek balloon
 const playerSpeek = document.getElementById("playerSpeek"); //player speek balloon
 const buttonContinue = document.getElementById("continue"); //game button
-const showButton = () => {
-  return (buttonContinue.style.display = "block");
-}; //show game button
-const hideButton = () => {
-  return (buttonContinue.style.display = "none");
-}; //hide game button
+
+const showButton = () => {return (buttonContinue.style.display = "block");}; //show game button
+
+const hideButton = () => {return (buttonContinue.style.display = "none");}; //hide game button
+
+//Show game board
+const showBoard = () => {
+  board.style.opacity = "1";
+  board.style.display = "flex";
+};
+
+//Hide game board
+const hideBoard = () => {
+  board.style.opacity = "0";
+  board.style.display = "none";
+};
+
 const badGuyImage = document.getElementById("bad-guy-img"); //BadGuy Image
 // badGuyImage.style.filter = "brightness(1)"; //When applied show image
 // badGuyImage.style.filter = "brightness(0)"; //when aplied hide image
+
+const board = document.getElementById("board"); //Board Game
 
 /* ------------------- GAME FUNCTIONS ------------------- */
 //BADGUY TYPPING EFFECT
@@ -320,7 +353,7 @@ function typePlayer() {
   //from https://www.w3schools.com/howto/howto_js_typewriter.asp
 }
 
-//RESULT TYPPING EFFECT
+//GAME RESULT TYPPING EFFECT
 function typeGameResult() {
   if (typping < gameResultSpeech[gameResultStatus].text.length) {
     badGuySpeek.innerHTML += gameResultSpeech[gameResultStatus].text[typping];
@@ -379,6 +412,7 @@ function talkMoment() {
   showGame();
 }
 
+//SHOW CONTINUE BUTTON ONLY AFTER SPEEK
 function talkMomentPlaying() {
   gameStatus++;
   typping = 0;
@@ -393,21 +427,19 @@ function talkMomentPlaying() {
   setTimeout(badGuyRandomChoice, 3000);
 }
 
+//SHOW CONTINUE BUTTON ONLY AFTER SPECIAL SPEECH
 function talkGameResult(n) {
   typping = 0;
 
   badGuySpeek.innerHTML = "";
   buttonContinue.innerText = "Continue...";
-  /* ------------ // Colocar algum +++ aqui... ------------ */
   typeGameResult();
   if (gameResultSpeech[n].button === "show") {
     setTimeout(showButton, gameResultSpeech[n].text.length * 50);
   }
 }
 
-/* ------------------- Show board Game ------------------ */
-const board = document.getElementById("board");
-
+//SHOW OR HIDE BOARD GAME
 function showGame() {
   if (speech[gameStatus].button === "hide") {
     setTimeout(showBoard, 3000);
@@ -415,42 +447,7 @@ function showGame() {
   hideBoard();
 }
 
-const showBoard = () => {
-  board.style.opacity = "1";
-  board.style.display = "flex";
-};
-
-const hideBoard = () => {
-  board.style.opacity = "0";
-  board.style.display = "none";
-};
-
-/* --------------------- Game Button -------------------- */
-buttonContinue.addEventListener("click", talkMoment);
-
-/* ----------------- Board Functionality ----------------- */
-// Options database
-const choicesImg = [
-  {
-    id: "fig-rock",
-    src: "assets/img/rock.png",
-  },
-  {
-    id: "fig-paper",
-    src: "assets/img/paper.png",
-  },
-  {
-    id: "fig-scissors",
-    src: "assets/img/scissors.png",
-  },
-];
-
-// Check choices
-let playerChoice;
-let badGuyChoice = "";
-
-board.addEventListener("click", identifyPlayerChoice);
-
+//SHOW PLAYER CHOICE IN PLAYER SPEEK BALLOON
 function identifyPlayerChoice(event) {
   let playerTarget = event.target.id;
   let takeSrcImage = "";
@@ -471,11 +468,13 @@ function identifyPlayerChoice(event) {
   badGuyTalkChoice();
 }
 
+//SHOW BADGUY LITTLE TEXT BEFORE SHOW HIS CHOICE
 function badGuyTalkChoice() {
   badGuySpeek.innerHTML = "";
   talkMomentPlaying();
 }
 
+//CHECK IF BADGUY HAVE A SPECIAL CHOICE, IF NOT, MAKE A RANDOM CHOICE (EASY GAME MODE)
 function badGuyRandomChoice() {
   badGuySpeek.innerHTML = "";
 
@@ -494,7 +493,7 @@ function badGuyRandomChoice() {
   setTimeout(showWinner, 3000);
 }
 
-/* ------------------ Check the winner ------------------ */
+//CHECK GAME RESULT
 function showWinner() {
   //Draw
   if (playerChoice === badGuyChoice) {
@@ -525,29 +524,32 @@ function showWinner() {
   }
 }
 
-/* -------------------- Final Screen -------------------- */
+/* -------------------- FINAL GAME SCREEN -------------------- */
 let homer = document.querySelector("#homerImg");
 let revelation = document.querySelector(".absolute");
 let finalText = document.querySelector("#finalText");
 
+//SHOW SURPRISE
 function gangStar() {
-  //   hideButton();
   homer.style.filter = "brightness(1)";
   setTimeout(time1, 4000);
   setTimeout(time2, 5000);
   setTimeout(specialButton, 10000);
 }
 
+//CREATE A TIMER TO SHOW SURPRISE 1
 function time1() {
   homer.classList.add("homer-exit");
 }
 
+//CREATE A TIMER 2 TO SHOW NEXT SURPRISE
 function time2() {
   revelation.style.display = "block";
   const body = document.getElementsByTagName("body")[0];
   finalText.style.display = "block";
 }
 
+//SHOW BUTTON RESTART IN THE GAME END AND ASK IF WANT START AGAIN
 function specialButton() {
   buttonContinue.innerText = "Restart";
   buttonContinue.style.position = "absolute";
@@ -558,3 +560,8 @@ function specialButton() {
   talkGameResult(gameResultStatus);
   buttonContinue.innerText = "Restart";
 }
+
+
+/* --------------------- EVENTS -------------------- */
+buttonContinue.addEventListener("click", talkMoment); //Game Button
+board.addEventListener("click", identifyPlayerChoice); //Game board
