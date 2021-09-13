@@ -21,7 +21,6 @@
 
 body {
   background-color: var(--eerie-black);
-  /* overflow: hidden; */
 }
 
 header,
@@ -46,7 +45,6 @@ h1 {
   display: flex;
   flex-direction: column;
   margin: 5vh auto;
-  /* filter: brightness(10%); */
 }
 
 .figure {
@@ -172,12 +170,12 @@ footer p {
 
 button.continue {
   display: block;
-  /* position: absolute; */
-  /* left: 50%; */
-  /* top: 53%; */
+  position: absolute;
+  left: 50%;
+  top: 55%;
   /* transform: translate(-50%, -50%); */
   padding: 10px 20px;
-  margin: 20px auto;
+  /* margin: 20px auto; */
   border-radius: var(--border-radius);
   border: none;
   background-color: var(--rich-black-fogra-39);
@@ -212,15 +210,15 @@ button.continue:hover {
 /* ----------------------- EXTRAS ----------------------- */
 @-webkit-keyframes bounce {
   0% {
-    transform: scale(1, 1) /*  translate(-50%, -50%) */;
+    transform: scale(1, 1) translate(-50%, -50%);
   }
 
   50% {
-    transform: scale(0.9, 1) /* translate(-50%, -50%) */;
+    transform: scale(0.9, 1) translate(-50%, -50%);
   }
 
   100% {
-    transform: scale(1, 1) /*  translate(-50%, -50%) */;
+    transform: scale(1, 1) translate(-50%, -50%);
   }
 }
 
@@ -234,10 +232,13 @@ button.continue:hover {
 }
 
 /* -------------------- MEDIA QUERIE -------------------- */
-@media (min-width: 500px) {
-  .button.continue {
-    top: 53%;
+@media (min-width: 345px) {
+  button.continue {
+    top: 52.5%;
   }
+}
+
+@media (min-width: 500px) {
   .speek {
     font-size: 1.6rem;
   }
