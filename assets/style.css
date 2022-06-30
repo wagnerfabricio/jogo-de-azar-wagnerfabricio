@@ -1,0 +1,252 @@
+/* ------------------------ FONTS ----------------------- */
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+/* ---------------------- VARIABLES --------------------- */
+:root {
+  /* FONTS */
+  /* font-family: 'Lobster', cursive; */
+  --las-vegas-font: "Lobster", cursive;
+
+  /* COLORS */
+  --hsla: 0;
+  --eerie-black: hsla(0, 0%, 13%, 1);
+  --onyx: hsla(0, 0%, 25%, 1);
+  --davys-grey: hsla(0, 0%, 50%, 1);
+  --eerie-black-2: hsla(0, 0%, 15%, 1);
+  --rich-black-fogra-39: hsla(0, 0%, 7%, 1);
+
+  /* EXTRAS */
+  --border-radius: 8px;
+}
+/* ----------------------- BASICS ----------------------- */
+
+body {
+  background-color: var(--eerie-black);
+}
+
+header,
+footer {
+}
+
+h1 {
+  font-family: var(--las-vegas-font);
+  color: var(--davys-grey);
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 2px;
+  text-shadow: 5px 5px 5px var(--onyx);
+}
+
+.container {
+  max-width: 600px;
+  height: 90vh;
+  border-radius: var(--border-radius);
+  background-color: var(--eerie-black-2);
+  display: flex;
+  flex-direction: column;
+  margin: 5vh auto;
+}
+
+.figure {
+  height: 120px;
+  object-fit: cover;
+  clip-path: polygon(
+    20% 0%,
+    80% 0%,
+    100% 20%,
+    100% 80%,
+    80% 100%,
+    20% 100%,
+    0% 80%,
+    0% 20%
+  );
+}
+
+.bad-guy-img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  filter: brightness(0);
+}
+
+.absolute {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.homer-img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  filter: brightness(0);
+}
+
+/* ----------------------- HEADER ----------------------- */
+header {
+  flex: 1;
+  background-color: black;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+}
+
+/* ----------------------- FOOTER ----------------------- */
+footer {
+  align-self: flex-end;
+  background-color: black;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  padding: 0.5rem;
+}
+footer p {
+  color: var(--davys-grey);
+  text-shadow: 4px 4px 4px var(--eerie-black-2);
+  text-align: right;
+}
+/* ------------------------ MAIN ------------------------ */
+.main-container {
+  flex: 18;
+  display: flex;
+  flex-direction: column;
+}
+
+.bad-guy,
+.player {
+  flex: 2 1 40%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.speek {
+  display: flex;
+  align-items: center;
+  width: 60%;
+  height: 70%;
+  margin: 20px;
+  border-radius: var(--border-radius);
+  background-color: var(--davys-grey);
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: monospace;
+  padding: 4px;
+  color: var(--rich-black-fogra-39);
+}
+
+.opacity {
+  /* opacity: 0; */
+}
+
+/* Board */
+.board {
+  flex: 1 0 30%;
+  display: none;
+  justify-content: space-around;
+  align-items: center;
+  border: 2px solid var(--davys-grey);
+  border-radius: var(--border-radius);
+  width: 90%;
+  margin: 10px auto;
+  opacity: 0;
+}
+
+.board__image {
+  padding: 10px;
+}
+
+.board__image img {
+  max-width: 100%;
+}
+
+.board__image img:hover {
+  filter: brightness(0.3) invert(1);
+}
+
+.speek__image {
+  width: 60%;
+  margin: 0 auto;
+}
+
+button.continue {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  /* transform: translate(-50%, -50%); */
+  padding: 10px 20px;
+  /* margin: 20px auto; */
+  border-radius: var(--border-radius);
+  border: none;
+  background-color: var(--rich-black-fogra-39);
+  color: var(--davys-grey);
+  font-size: 1.5rem;
+  box-shadow: 5px 5px 10px var(--onyx);
+  animation: bounce 2s infinite;
+}
+
+button.continue:hover {
+  color: var(--rich-black-fogra-39);
+  background-color: var(--davys-grey);
+}
+
+.homer-exit {
+  margin-top: 140px;
+  transition: all 2s;
+}
+
+#finalText {
+  display: none;
+  position: absolute;
+  bottom: 12%;
+  right: 50%;
+  transform: translateX(50%);
+  font-family: var(--las-vegas-font);
+  font-size: 3rem;
+  color: var(--rich-black-fogra-39);
+  text-align: center;
+  text-shadow: 5px 5px 5px white;
+}
+/* ----------------------- EXTRAS ----------------------- */
+@-webkit-keyframes bounce {
+  0% {
+    transform: scale(1, 1) translate(-50%, -50%);
+  }
+
+  50% {
+    transform: scale(0.9, 1) translate(-50%, -50%);
+  }
+
+  100% {
+    transform: scale(1, 1) translate(-50%, -50%);
+  }
+}
+
+@-webkit-keyframes exit {
+  0% {
+    margin-top: 0;
+  }
+  100% {
+    margin-top: 140px;
+  }
+}
+
+/* -------------------- MEDIA QUERIE -------------------- */
+@media (min-width: 345px) {
+  button.continue {
+    top: 52.5%;
+  }
+}
+
+@media (min-width: 500px) {
+  .speek {
+    font-size: 1.6rem;
+  }
+  .speek__image {
+    width: 45%;
+  }
+
+  .board {
+    width: 75%;
+  }
+}
